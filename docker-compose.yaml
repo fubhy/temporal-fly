@@ -1,0 +1,61 @@
+version: "3.7"
+
+# services:
+#   postgres:
+#     image: bitnami/postgresql:14
+#     ports:
+#       - 5432:5432
+#     volumes:
+#       - postgres:/bitnami/postgresql
+#     environment:
+#       ALLOW_EMPTY_PASSWORD: 'yes'
+
+#   elasticsearch:
+#     image: bitnami/elasticsearch:7.17.3
+#     volumes:
+#       - elasticsearch:/bitnami/elasticsearch/data
+#     ports:
+#       - 9200:9200
+#     environment:
+#       - ELASTICSEARCH_HEAP_SIZ=100m
+
+#   temporal:
+#     image: temporalio/auto-setup:1.16.1
+#     ports:
+#       - 7233:7233
+#     volumes:
+#       - ./config/dynamicconfig.yaml:/etc/temporal/config/dynamicconfig.yaml
+#     environment:
+#       - DB=postgresql
+#       - DB_PORT=5432
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_SEEDS=postgres
+#       - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig.yaml
+#       - ENABLE_ES=true
+#       - ES_SEEDS=elasticsearch
+#       - ES_VERSION=v7
+
+#   ui:
+#     image: temporalio/ui:0.10.6
+#     environment:
+#       - TEMPORAL_ADDRESS=temporal:7233
+#     ports:
+#       - 8080:8080
+
+# volumes:
+#   elasticsearch:
+#   postgres:
+
+services:
+  temporal:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.temporalite
+    ports:
+      - 7233:7233
+      - 8233:8233
+    volumes:
+      - temporal:/data
+
+volumes:
+  temporal:

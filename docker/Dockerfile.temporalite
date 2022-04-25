@@ -1,0 +1,5 @@
+FROM golang:1.18
+
+RUN go install github.com/DataDog/temporalite/cmd/temporalite@latest
+
+CMD ["temporalite", "start", "-n", "default", "--ip", "0.0.0.0", "-f", "/data/temporal.db"]

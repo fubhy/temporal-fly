@@ -1,0 +1,21 @@
+# TODO: This is a single runtime deployment of temporal running all services in a single app
+# on fly.io. You should keep an eye on the performance & scalability of this deployment and,
+# if necessary, eventually switch standalone service deployments.
+
+app = "my-temporal"
+
+[build]
+  dockerfile = "docker/Dockerfile.temporal"
+
+[env]
+  SERVICES = "frontend,matching,history,worker"
+  DYNAMIC_CONFIG_FILE_PATH = "config/dynamicconfig.yaml"
+  DB = "postgresql"
+  DB_PORT = "5432"
+  POSTGRES_SEEDS = "my-temporal-db.internal"
+  ENABLE_ES = "true"
+  ES_SEEDS = "my-temporal-es.internal"
+  ES_VERSION = "v7"
+  BIND_ON_IP = "0.0.0.0"
+  TEMPORAL_BROADCAST_ADDRESS = "0.0.0.0"
+  TEMPORAL_CLI_ADDRESS = "localhost:7233"

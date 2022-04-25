@@ -1,0 +1,7 @@
+app = "my-temporal-ui"
+
+[build]
+  image = "temporalio/ui:0.10.6"
+
+[env]
+  TEMPORAL_ADDRESS = "my-temporal.internal:7233"

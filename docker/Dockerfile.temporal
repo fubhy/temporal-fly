@@ -1,0 +1,3 @@
+FROM temporalio/auto-setup:1.16.1
+
+COPY config/dynamicconfig.yaml /etc/temporal/config/dynamicconfig.yaml

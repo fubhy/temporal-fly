@@ -1,0 +1,8 @@
+app = "my-temporal-es"
+
+[build]
+  image = "bitnami/elasticsearch:7.17.3"
+
+[[mounts]]
+  destination = "/bitnami/elasticsearch/data"
+  source = "data"
